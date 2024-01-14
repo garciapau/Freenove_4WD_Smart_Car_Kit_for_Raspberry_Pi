@@ -16,7 +16,7 @@ class Buga:
         self.led = Led()
         self.adc = Adc()
 
-    def busca_camino(self):
+    def search_path(self):
         angle = 90
         esquerra: bool = True
         try:
@@ -39,7 +39,7 @@ class Buga:
             self.motor.setMotorModel(0, 0, 0, 0)
             self.servo.setServoPwm('0', 90)
 
-    def encara_camino(self):
+    def face_path(self):
         angle = 90
         girs = 0
         esquerra: bool = True
@@ -59,7 +59,7 @@ class Buga:
             self.motor.stop()
             self.servo.setServoPwm('0', 90)
 
-    def sigue_camino(self):
+    def drive(self):
         try:
             last = 0x00
             while True:
@@ -117,9 +117,9 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         print("Parameter error: Please assign the device")
         exit()
-    if sys.argv[1] == 'b':
-        buga.busca_camino()
-    elif sys.argv[1] == 'e':
-        buga.encara_camino()
-    elif sys.argv[1] == 's':
-        buga.sigue_camino()
+    if sys.argv[1] == 's':
+        buga.search_path()
+    elif sys.argv[1] == 'f':
+        buga.face_path()
+    elif sys.argv[1] == 'd':
+        buga.drive()
